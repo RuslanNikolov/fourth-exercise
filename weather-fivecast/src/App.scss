@@ -1,3 +1,17 @@
+// scss is a great practical css preprocessor
+.app-container {
+  padding-top: 100px; 
+  background-color: lavender; 
+  height: 100vh; 
+  border: dodgerblue 4px solid
+}
+
+.page-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+   margin-bottom: 20px;
+}
+
 .city-header {
   color:#6495ed;
 }

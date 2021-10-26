@@ -1,3 +1,13 @@
+# So this is my weather forecast app:
+
+*If i had more time i would:*
+* create a more beautiful and immersive design
+* give more weather info to the user and add visually helping and аesthetic elements
+* the bigger it gets, the more powerful the need for React Context API or Redux, and a React Router as well
+* optimise more with unecessary rerenders and smaller bundles
+* increase security towards the OWASP security risks
+
+    
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

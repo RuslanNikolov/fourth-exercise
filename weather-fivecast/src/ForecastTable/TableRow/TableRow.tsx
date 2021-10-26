@@ -1,7 +1,9 @@
 import React from 'react';
-import * as MUI from '@mui/material';
-import * as IconsMUI from '@mui/icons-material';
+// we cannot do something like import * as MUI from @mui.. because that will import too much stuff
+import { TableRow as MUITableRow, TableCell, Typography, IconButton, Collapse, Box, Table, TableHead, TableBody } from '@mui/material';
+import { KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material';
 import { DailyWeatherForecast, IHourForecast } from '../../types';
+import * as styles from './TableRowStyles';
 
 interface ITableRowProps {
   dailyForecast: DailyWeatherForecast
@@ -12,62 +14,64 @@ const TableRow = (props: ITableRowProps) => {
 
   return (
     <React.Fragment>
-      <MUI.TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <MUI.TableCell>
-          <MUI.IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-            {open ? <IconsMUI.KeyboardArrowUp /> : <IconsMUI.KeyboardArrowDown />}
-          </MUI.IconButton>
-        </MUI.TableCell>
-        <MUI.TableCell className="date-cell" component="th" scope="row">
+      <MUITableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+        <TableCell sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <Typography variant="caption">BY HOURS</Typography>
+          <IconButton style={styles.dateCell} aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+          </IconButton>
+        </TableCell>
+        <TableCell className="date-cell" component="th" scope="row">
           <strong>{props.dailyForecast.dayForecast.date}</strong>
-        </MUI.TableCell>
-        <MUI.TableCell>{props.dailyForecast.dayForecast.averageTemp}°</MUI.TableCell>
-        <MUI.TableCell>{props.dailyForecast.dayForecast.averageFeelsLike}°</MUI.TableCell>
-        <MUI.TableCell>{props.dailyForecast.dayForecast.minTemp}°</MUI.TableCell>
-        <MUI.TableCell>{props.dailyForecast.dayForecast.maxTemp}°</MUI.TableCell>
-        <MUI.TableCell>{props.dailyForecast.dayForecast.averageHumidity}</MUI.TableCell>
-        <MUI.TableCell>{props.dailyForecast.dayForecast.averageCloudiness}</MUI.TableCell>
-        <MUI.TableCell>{props.dailyForecast.dayForecast.averageRainProbability * 100}%</MUI.TableCell>
-      </MUI.TableRow>
-      <MUI.TableRow>
-        <MUI.TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <MUI.Collapse in={open} timeout="auto" unmountOnExit>
-            <MUI.Box style={{ margin: 1 }}>
-              <MUI.Typography variant="h6" gutterBottom component="div">
+        </TableCell>
+        <TableCell>{props.dailyForecast.dayForecast.averageTemp}°</TableCell>
+        <TableCell>{props.dailyForecast.dayForecast.averageFeelsLike}°</TableCell>
+        <TableCell>{props.dailyForecast.dayForecast.minTemp}°</TableCell>
+        <TableCell>{props.dailyForecast.dayForecast.maxTemp}°</TableCell>
+        <TableCell>{props.dailyForecast.dayForecast.averageHumidity}</TableCell>
+        <TableCell>{props.dailyForecast.dayForecast.averageCloudiness}</TableCell>
+        <TableCell>{props.dailyForecast.dayForecast.averageRainProbability * 100}%</TableCell>
+      </MUITableRow>
+
+      <MUITableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box style={{ margin: 1 }}>
+              <Typography variant="h6" gutterBottom component="div">
                 Hourly details
-              </MUI.Typography>
-              <MUI.Table size="small" aria-label="purchases">
-                <MUI.TableHead>
-                  <MUI.TableRow>
-                    <MUI.TableCell />
-                    <MUI.TableCell>Temperature</MUI.TableCell>
-                    <MUI.TableCell>Feels like</MUI.TableCell>
-                    <MUI.TableCell>Atmospheric pressure</MUI.TableCell>
-                    <MUI.TableCell>Humidity</MUI.TableCell>
-                    <MUI.TableCell>Weather</MUI.TableCell>
-                    <MUI.TableCell>Windspeed</MUI.TableCell>
-                  </MUI.TableRow>
-                </MUI.TableHead>
-                <MUI.TableBody>
+              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <MUITableRow>
+                    <TableCell />
+                    <TableCell>Temperature</TableCell>
+                    <TableCell>Feels like</TableCell>
+                    <TableCell>Atmospheric pressure</TableCell>
+                    <TableCell>Humidity</TableCell>
+                    <TableCell>Weather</TableCell>
+                    <TableCell>Windspeed</TableCell>
+                  </MUITableRow>
+                </TableHead>
+                <TableBody>
                   {props.dailyForecast.hourForecasts.map((hourForecast: IHourForecast) => (
-                    <MUI.TableRow key={hourForecast.dt_txt}>
-                      <MUI.TableCell component="th" scope="row">
+                    <MUITableRow key={hourForecast.dt_txt}>
+                      <TableCell component="th" scope="row">
                         {hourForecast.dt_txt.split(' ')[1]}
-                      </MUI.TableCell>
-                      <MUI.TableCell>{hourForecast.main.temp}</MUI.TableCell>
-                      <MUI.TableCell>{hourForecast.main.feels_like}</MUI.TableCell>
-                      <MUI.TableCell>{hourForecast.main.pressure}</MUI.TableCell>
-                      <MUI.TableCell>{hourForecast.main.humidity}</MUI.TableCell>
-                      <MUI.TableCell>{hourForecast.weather[0].main}</MUI.TableCell>
-                      <MUI.TableCell>{hourForecast.wind.speed}</MUI.TableCell>
-                    </MUI.TableRow>
+                      </TableCell>
+                      <TableCell>{hourForecast.main.temp}</TableCell>
+                      <TableCell>{hourForecast.main.feels_like}</TableCell>
+                      <TableCell>{hourForecast.main.pressure}</TableCell>
+                      <TableCell>{hourForecast.main.humidity}</TableCell>
+                      <TableCell>{hourForecast.weather[0].main}</TableCell>
+                      <TableCell>{hourForecast.wind.speed}</TableCell>
+                    </MUITableRow>
                   ))}
-                </MUI.TableBody>
-              </MUI.Table>
-            </MUI.Box>
-          </MUI.Collapse>
-        </MUI.TableCell>
-      </MUI.TableRow>
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </MUITableRow>
     </React.Fragment>
   );
 }

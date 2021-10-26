@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(TableContainer)
+  component={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "propTypes": Object {
+        "children": [Function],
+        "className": [Function],
+        "classes": [Function],
+        "component": [Function],
+        "elevation": [Function],
+        "square": [Function],
+        "sx": [Function],
+        "variant": [Function],
+      },
+      "render": [Function],
+    }
+  }
+>
+  <ForwardRef(Table)
+    aria-label="collapsible table"
+  >
+    <ForwardRef(TableHead)>
+      <ForwardRef(TableRow)
+        sx={
+          Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <ForwardRef(TableCell) />
+        <ForwardRef(TableCell)>
+          <ForwardRef(Typography)
+            style={
+              Object {
+                "color": "green",
+                "textAlign": "center",
+              }
+            }
+            variant="h3"
+          >
+            ☮
+          </ForwardRef(Typography)>
+        </ForwardRef(TableCell)>
+        <ForwardRef(TableCell)>
+          Temperature
+        </ForwardRef(TableCell)>
+        <ForwardRef(TableCell)>
+          Feels like
+        </ForwardRef(TableCell)>
+        <ForwardRef(TableCell)>
+          Minimium Temp
+        </ForwardRef(TableCell)>
+        <ForwardRef(TableCell)>
+          Maximum Temp
+        </ForwardRef(TableCell)>
+        <ForwardRef(TableCell)>
+          Humidity
+        </ForwardRef(TableCell)>
+        <ForwardRef(TableCell)>
+          Cloudiness
+        </ForwardRef(TableCell)>
+        <ForwardRef(TableCell)>
+          Rain probability
+        </ForwardRef(TableCell)>
+      </ForwardRef(TableRow)>
+    </ForwardRef(TableHead)>
+    <ForwardRef(TableBody)>
+      <TableRow
+        dailyForecast={
+          Object {
+            "dayForecast": Object {
+              "averageCloudiness": 34,
+              "averageFeelsLike": 12,
+              "averageHumidity": 84,
+              "averageRainProbability": 0,
+              "averageTemp": 12,
+              "date": "2021-10-26",
+              "maxTemp": 13,
+              "minTemp": 12,
+            },
+            "hourForecasts": Array [
+              Object {
+                "clouds": Object {
+                  "all": 56,
+                },
+                "dt_txt": "2021-10-26 12:00:00",
+                "main": Object {
+                  "feels_like": 11.93,
+                  "grnd_level": 1017,
+                  "humidity": 87,
+                  "pressure": 1018,
+                  "sea_level": 1018,
+                  "temp": 12.37,
+                  "temp_kf": -0.55,
+                  "temp_max": 12.92,
+                  "temp_min": 12.37,
+                },
+                "pop": 0,
+                "visibility": 10000,
+                "weather": Array [
+                  Object {
+                    "main": "Clouds",
+                  },
+                ],
+                "wind": Object {
+                  "deg": 2,
+                  "speed": 2.09,
+                },
+              },
+              Object {
+                "clouds": Object {
+                  "all": 12,
+                },
+                "dt_txt": "2021-10-27 12:00:00",
+                "main": Object {
+                  "feels_like": 11.98,
+                  "grnd_level": 1018,
+                  "humidity": 80,
+                  "pressure": 1018,
+                  "sea_level": 1018,
+                  "temp": 12.38,
+                  "temp_kf": -0.58,
+                  "temp_max": 12.92,
+                  "temp_min": 12.37,
+                },
+                "pop": 0.4,
+                "visibility": 10000,
+                "weather": Array [
+                  Object {
+                    "main": "Rain",
+                  },
+                ],
+                "wind": Object {
+                  "deg": 1,
+                  "speed": 2.12,
+                },
+              },
+            ],
+          }
+        }
+        key="2021-10-26 12:00:00"
+      />
+    </ForwardRef(TableBody)>
+  </ForwardRef(Table)>
+</ForwardRef(TableContainer)>
+`;

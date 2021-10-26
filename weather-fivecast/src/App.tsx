@@ -3,21 +3,24 @@ import ForecastTable from './ForecastTable/ForecastTable'
 import './App.scss';
 import ErrorBoundary from './ErrorBoundary'
 import SeachInput from './SearchInput/SearchInput';
-import { useGetWeatherForecasts } from './useGetWeatherForecasts'
-import * as MUI from '@mui/material';
+import { useGetWeatherForecasts } from './Hooks/useGetWeatherForecasts'
+import {Container, Box, Typography} from '@mui/material';
+import UserPositionWidget from './UserPositionWidget/UserPositionWidget';
 
 const App = () => {
   const [dailyForecasts, currentCity, setCurrentCity] = useGetWeatherForecasts()
+  console.log('dailyForecast',dailyForecasts)
 
   return (
     <ErrorBoundary>
-      <MUI.Container style={{ paddingTop: '100px', backgroundColor: 'lavender', height: '100vh', border: 'dodgerblue 4px solid' }}>
-        <MUI.Box style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-          <h2 className="city-header">{currentCity}</h2>
+      <Container className="app-container" >
+        <Box className="page-header-wrapper">
+          <Typography variant="h4" className="city-header">{currentCity}</Typography>
           <SeachInput setCurrentCity={setCurrentCity} />
-        </MUI.Box>
+        </Box>
         <ForecastTable currentCity={currentCity} dailyForecasts={dailyForecasts} />
-      </MUI.Container>
+        <UserPositionWidget />
+      </Container>
     </ErrorBoundary>
   );
 }

@@ -41,7 +41,7 @@ export interface IHourForecast {
     },
     weather: { // array which only has 1 element- a weather description object
         main: string // Group of weather parameters (Rain, Snow, Extreme etc.),
-        description: string // Additional weather description
+        description?: string // Additional weather description
         [otherKey: string]: any
     }[],
     wind: {

@@ -3,3 +3,15 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+const mockGeolocation = {
+    getCurrentPosition: jest.fn(),
+    watchPosition: jest.fn()
+};
+
+//@ts-ignore
+global.navigator.geolocation = mockGeolocation;
+configure({ adapter: new Adapter() });
+

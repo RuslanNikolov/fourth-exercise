@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="position-box MuiBox-root css-0"
+>
+  <div
+    className="positon-detail-column MuiBox-root css-0"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      Your Latitude:
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      0
+    </p>
+  </div>
+  <div
+    className="positon-detail-column MuiBox-root css-0"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      Your Longtitude:
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      0
+    </p>
+  </div>
+  <div
+    className="positon-detail-column MuiBox-root css-0"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      Your Attitude:
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      ✓
+    </p>
+  </div>
+</div>
+`;

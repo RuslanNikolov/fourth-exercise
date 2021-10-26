@@ -1,0 +1,19 @@
+.position-box {
+    display: flex;
+    width: 100%;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.positon-detail-column {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.position-label {
+   font-weight: bold;
+}

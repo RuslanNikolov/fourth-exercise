@@ -1,18 +1,18 @@
-import React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
     IWeatherResponseData
     , DailyWeatherForecast, IHourForecast, IDayForecast
-} from './types';
-import APIConfig from './APIConfig';
+} from '../types';
+import APIConfig from '../APIConfig';
 import axios, { AxiosResponse } from 'axios';
 
 export const useGetWeatherForecasts = (): [DailyWeatherForecast[], string, (city: string) => void | never] => {
     // we start the user journey with showing the weather in the land of groovy hippies and life hacking programmers
-    const [currentCity, setCurrentCity] = React.useState<string>('San Francisco');
-    const [dailyWeatherForecasts, setDailyWeatherForecasts] = React.useState<DailyWeatherForecast[]>([] as DailyWeatherForecast[])
+    const [currentCity, setCurrentCity] = useState<string>('San Francisco');
+    const [dailyWeatherForecasts, setDailyWeatherForecasts] = useState<DailyWeatherForecast[]>([] as DailyWeatherForecast[])
 
     // we change the forecasts on every city change
-    React.useEffect(() => {
+    useEffect(() => {
         fetchForecasts(currentCity);
     }, [currentCity])
 
@@ -22,28 +22,42 @@ export const useGetWeatherForecasts = (): [DailyWeatherForecast[], string, (city
         setDailyWeatherForecasts(dailyWeatherForecasts)
     }
 
-    const fetchWeatherData = React.useCallback(async (city: string): Promise<IWeatherResponseData | never> => {
+    const fetchWeatherData = useCallback(async (city: string): Promise<IWeatherResponseData | never> => {
         const fiveDaysThreeHourURL = `${APIConfig.fiveDaysThreeHourUrl}?q=${city}&appid=${APIConfig.openWeatherAppID}&units=metric`
         let weatherResponseData: any;
-
         try {
             const response: AxiosResponse = await axios.get(fiveDaysThreeHourURL);
             weatherResponseData = response.data as IWeatherResponseData;
         } catch (err: unknown) {
-            throw new Error(`Error with fetching data: ${(err as Error).message}`)
+            handleError(err);
         }
 
         return weatherResponseData;
     }, [])
 
-    const extractDailyForecasts = React.useCallback((weatherResponseData: IWeatherResponseData): DailyWeatherForecast[] => {
+    const handleError = useCallback((err: unknown) => {
+        if (err instanceof TypeError) {
+            throw new TypeError('TypeError | Someone isn\'t who you thought he was!')
+        } else if (err instanceof RangeError) {
+            throw new RangeError('Range Error | Someone got too big for their own shoes!')
+        } else if (err instanceof SyntaxError) {
+            throw new SyntaxError('Syntax Error | Somebody skipped grammar classes!')
+        } else if (err instanceof AggregateError) {
+            throw new AggregateError(`AggegateError | Here we see acumulation of the same bad life choices`)
+        } else {
+            console.error('Even my virtual brain cannot tell what went wrong..')
+        }
+    }, [])
+
+    const extractDailyForecasts = useCallback((weatherResponseData: IWeatherResponseData): DailyWeatherForecast[] => {
         // we start to create our daily forecasts which we will use in our forecast table
         const dailyForecasts: DailyWeatherForecast[] = [];
+        const hourListCopy = [...weatherResponseData.list];
 
-        while (weatherResponseData.list.length > 0) {
+        while (hourListCopy.length > 0) {
             // we actually relocate groups of 8 hourForecasts from the list, to our hourForecasts in a dailyForecast obj, until list is exhausted
             const dailyForecast: DailyWeatherForecast = {
-                hourForecasts: weatherResponseData.list.splice(0, 8) as IHourForecast[],
+                hourForecasts: hourListCopy.splice(0, 8) as IHourForecast[],
                 dayForecast: {} as IDayForecast
             }
 
@@ -82,5 +96,5 @@ export const useGetWeatherForecasts = (): [DailyWeatherForecast[], string, (city
         return dailyForecasts;
     }, [])
 
-    return [dailyWeatherForecasts, currentCity, setCurrentCity]
+    return [dailyWeatherForecasts, currentCity, fetchForecasts]
 }
