@@ -58,12 +58,12 @@ const TableRow = (props: ITableRowProps) => {
                       <TableCell component="th" scope="row">
                         {hourForecast.dt_txt.split(' ')[1]}
                       </TableCell>
-                      <TableCell>{hourForecast.main.temp}</TableCell>
-                      <TableCell>{hourForecast.main.feels_like}</TableCell>
-                      <TableCell>{hourForecast.main.pressure}</TableCell>
-                      <TableCell>{hourForecast.main.humidity}</TableCell>
+                      <TableCell>{hourForecast.main.temp}°</TableCell>
+                      <TableCell>{hourForecast.main.feels_like}°</TableCell>
+                      <TableCell>{hourForecast.main.pressure} hpa</TableCell>
+                      <TableCell>{hourForecast.main.humidity}%</TableCell>
                       <TableCell>{hourForecast.weather[0].main}</TableCell>
-                      <TableCell>{hourForecast.wind.speed}</TableCell>
+                      <TableCell>{hourForecast.wind.speed} m/sec</TableCell>
                     </MUITableRow>
                   ))}
                 </TableBody>
