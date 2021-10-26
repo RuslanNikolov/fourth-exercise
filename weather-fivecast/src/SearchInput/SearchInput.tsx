@@ -9,6 +9,11 @@ interface ISearchInputProps {
 const SearchInput = memo(({ setCurrentCity }: ISearchInputProps) => {
     const [cityInput, setCityInput] = useState('');
 
+    const triggerCityChange = () => {
+        setCurrentCity(cityInput);
+        setCityInput('');
+    }
+
     return (
         <Box style={{ display: 'flex', alignItems: 'center' } /* Short inline styles enhance readability*/}>
             <TextField
@@ -21,9 +26,10 @@ const SearchInput = memo(({ setCurrentCity }: ISearchInputProps) => {
                 aria-describedby="city-input"
                 value={cityInput}
                 style={{ marginRight: '20px' }}
+                onKeyDown={(e) => { e.key === 'Enter' && triggerCityChange() }} // to submit input with Enter key
                 onChange={(event: ChangeEvent<HTMLInputElement>) => { setCityInput(event.currentTarget.value); }}
             />
-            <Button variant="contained" className="submit-button" onClick={() => { setCurrentCity(cityInput); setCityInput('') }}>Let's go!</Button>
+            <Button variant="contained" className="submit-button" onClick={() => triggerCityChange()}>Let's go!</Button>
         </Box>
 
     )

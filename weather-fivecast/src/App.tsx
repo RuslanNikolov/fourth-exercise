@@ -9,7 +9,6 @@ import UserPositionWidget from './UserPositionWidget/UserPositionWidget';
 
 const App = () => {
   const [dailyForecasts, currentCity, setCurrentCity] = useGetWeatherForecasts()
-  console.log('dailyForecast',dailyForecasts)
 
   return (
     <ErrorBoundary>

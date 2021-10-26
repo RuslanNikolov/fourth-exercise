@@ -37,15 +37,15 @@ export const useGetWeatherForecasts = (): [DailyWeatherForecast[], string, (city
 
     const handleError = useCallback((err: unknown) => {
         if (err instanceof TypeError) {
-            throw new TypeError('TypeError | Someone isn\'t who you thought he was!')
+            throw new TypeError('TypeError | Someone isn\'t who you thought he was!' + (err as any).message)
         } else if (err instanceof RangeError) {
-            throw new RangeError('Range Error | Someone got too big for their own shoes!')
+            throw new RangeError('Range Error | Someone got too big for their own shoes!' + (err as any).message)
         } else if (err instanceof SyntaxError) {
-            throw new SyntaxError('Syntax Error | Somebody skipped grammar classes!')
+            throw new SyntaxError('Syntax Error | Somebody skipped grammar classes!' + (err as any).message)
         } else if (err instanceof AggregateError) {
-            throw new AggregateError(`AggegateError | Here we see acumulation of the same bad life choices`)
+            throw new AggregateError(`AggegateError | Here we see acumulation of the same bad life choices` + (err as any).message)
         } else {
-            console.error('Even my virtual brain cannot tell what went wrong..')
+            throw new Error((err as any).message + ' Fetching error')
         }
     }, [])
 

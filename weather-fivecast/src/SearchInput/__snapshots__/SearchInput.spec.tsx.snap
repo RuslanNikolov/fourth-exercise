@@ -13,6 +13,7 @@ exports[`renders correctly 1`] = `
   <div
     aria-describedby="city-input"
     className="MuiFormControl-root MuiTextField-root SearchInput css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+    onKeyDown={[Function]}
     style={
       Object {
         "marginRight": "20px",
