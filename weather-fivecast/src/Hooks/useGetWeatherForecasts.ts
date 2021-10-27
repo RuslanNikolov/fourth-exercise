@@ -17,6 +17,7 @@ export const useGetWeatherForecasts = (): [DailyWeatherForecast[], string, (city
     }, [currentCity])
 
     const fetchForecasts = async (city: string) => {
+        setCurrentCity(city)
         const weatherResponseData = await fetchWeatherData(city);
         const dailyWeatherForecasts = extractDailyForecasts(weatherResponseData);
         setDailyWeatherForecasts(dailyWeatherForecasts)
